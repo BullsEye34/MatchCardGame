@@ -10,19 +10,29 @@ class _GamePageState extends State<GamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: GridView.builder(
-          itemCount: 16,
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-          itemBuilder: (context, index) {
-            return Card(
-              child: new GridTile(
-                footer: new Text("Footer"),
-                child: new Text(
-                    "Child"), //just for testing, will fill with image later
-              ),
-            );
-          }),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          GridView.builder(
+              shrinkWrap: true,
+              itemCount: 16,
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () => {},
+                  child: Card(
+                    child: new GridTile(
+                      footer: new Text("Footer"),
+                      child: new Text(
+                          "Child"), //just for testing, will fill with image later
+                    ),
+                  ),
+                );
+              }),
+        ],
+      ),
     );
   }
 }
