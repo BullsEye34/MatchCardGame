@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class GamePage extends StatefulWidget {
   @override
@@ -25,8 +26,9 @@ class _GamePageState extends State<GamePage> {
                   child: Card(
                     child: new GridTile(
                       footer: new Text("Footer"),
-                      child: new Text(
-                          "Child"), //just for testing, will fill with image later
+                      child: Observer(
+                        builder: (_) => new Text("Child"),
+                      ), //just for testing, will fill with image later
                     ),
                   ),
                 );
