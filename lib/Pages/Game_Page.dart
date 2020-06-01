@@ -8,7 +8,7 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  final Game game = Game();
+  final Game game = new Game();
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +20,31 @@ class _GamePageState extends State<GamePage> {
         children: [
           GridView.builder(
               shrinkWrap: true,
-              itemCount: 16,
+              itemCount: game.card.length,
               gridDelegate:
                   SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
               itemBuilder: (context, index) {
-                game.card.shuffle();
                 return InkWell(
                   onTap: game.turn,
                   child: Card(
                     child: new GridTile(
-                      footer: new Text("Footer"),
+                      child: Observer(
+                        builder: (_) => new Text("${game.card[index]}"),
+                      ), //just for testing, will fill with image later
+                    ),
+                  ),
+                );
+              }),
+          GridView.builder(
+              shrinkWrap: true,
+              itemCount: game.card.length,
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: game.turn,
+                  child: Card(
+                    child: new GridTile(
                       child: Observer(
                         builder: (_) => new Text("${game.card[index]}"),
                       ), //just for testing, will fill with image later
