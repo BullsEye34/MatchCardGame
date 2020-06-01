@@ -31,7 +31,7 @@ class _GamePageState extends State<GamePage> {
                     child: new GridTile(
                       footer: new Text("Footer"),
                       child: Observer(
-                        builder: (_) => new Text("${game.card}"),
+                        builder: (_) => new Text("${game.card[index]}"),
                       ), //just for testing, will fill with image later
                     ),
                   ),
