@@ -56,4 +56,10 @@ abstract class Game with Store {
     'cQ',
     'cA',
   ];
+  var reveal = true;
+
+  @action
+  void turn() {
+    reveal = !reveal;
+  }
 }
