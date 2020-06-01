@@ -31,13 +31,21 @@ class _GamePageState extends State<GamePage> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: game.turn,
-                  child: Card(
-                    child: new GridTile(
-                      child: Observer(
-                        builder: (_) => new Text("${game.card[index]}"),
-                      ), //just for testing, will fill with image later
-                    ),
-                  ),
+                  child: (game.reveal)
+                      ? Card(
+                          child: new GridTile(
+                            child: Observer(
+                              builder: (_) => new Text("${game.card[index]}"),
+                            ), //just for testing, will fill with image later
+                          ),
+                        )
+                      : Card(
+                          child: new GridTile(
+                            child: Observer(
+                              builder: (_) => new Text(""),
+                            ), //just for testing, will fill with image later
+                          ),
+                        ),
                 );
               }),
           GridView.builder(
