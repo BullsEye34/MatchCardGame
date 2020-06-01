@@ -9,11 +9,16 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   final Game game = new Game();
+  final Game game2 = new Game();
 
   @override
   Widget build(BuildContext context) {
+    var shuffleCard = game2.card;
+    shuffleCard.shuffle();
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0,
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +51,7 @@ class _GamePageState extends State<GamePage> {
                   child: Card(
                     child: new GridTile(
                       child: Observer(
-                        builder: (_) => new Text("${game.card[index]}"),
+                        builder: (_) => new Text("${shuffleCard[index]}"),
                       ), //just for testing, will fill with image later
                     ),
                   ),
