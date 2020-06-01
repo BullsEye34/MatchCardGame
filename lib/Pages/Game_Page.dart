@@ -11,7 +11,7 @@ class _GamePageState extends State<GamePage> {
     return Scaffold(
       appBar: AppBar(),
       body: GridView.builder(
-          itemCount: 8,
+          itemCount: 16,
           gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
           itemBuilder: (context, index) {
