@@ -16,7 +16,9 @@ class _GamePageState extends State<GamePage> {
     var shuffleCard = game2.card;
     shuffleCard.shuffle();
     return Scaffold(
+      backgroundColor: Colors.red,
       appBar: AppBar(
+        backgroundColor: Colors.red,
         elevation: 0,
       ),
       body: Column(
@@ -35,14 +37,15 @@ class _GamePageState extends State<GamePage> {
                       ? Card(
                           child: new GridTile(
                             child: Observer(
-                              builder: (_) => new Text("${game.card[index]}"),
+                              builder: (_) => Center(
+                                  child: new Text("${game.card[index]}")),
                             ), //just for testing, will fill with image later
                           ),
                         )
                       : Card(
                           child: new GridTile(
                             child: Observer(
-                              builder: (_) => new Text(""),
+                              builder: (_) => Center(child: new Text("")),
                             ), //just for testing, will fill with image later
                           ),
                         ),
