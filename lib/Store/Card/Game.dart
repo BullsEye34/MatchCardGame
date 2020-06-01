@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 
-abstract class Game with Store {
+abstract class _Game with Store {
   @observable
   var card = [
     's2',
