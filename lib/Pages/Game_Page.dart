@@ -8,6 +8,8 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
+  final Game game = Game();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,13 +24,14 @@ class _GamePageState extends State<GamePage> {
               gridDelegate:
                   SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
               itemBuilder: (context, index) {
+                game.card.shuffle();
                 return InkWell(
-                  onTap: () => {},
+                  onTap: game.turn,
                   child: Card(
                     child: new GridTile(
                       footer: new Text("Footer"),
                       child: Observer(
-                        builder: (_) => new Text("Child"),
+                        builder: (_) => new Text("${game.card}"),
                       ), //just for testing, will fill with image later
                     ),
                   ),
