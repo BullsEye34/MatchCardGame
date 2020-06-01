@@ -62,7 +62,8 @@ class _GamePageState extends State<GamePage> {
                   child: Card(
                     child: new GridTile(
                       child: Observer(
-                        builder: (_) => new Text("${shuffleCard[index]}"),
+                        builder: (_) =>
+                            Center(child: new Text("${shuffleCard[index]}")),
                       ), //just for testing, will fill with image later
                     ),
                   ),
