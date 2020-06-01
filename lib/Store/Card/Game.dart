@@ -17,7 +17,7 @@ abstract class _Game with Store {
     'cA',
   ];
   @observable
-  var reveal = true;
+  bool reveal = true;
 
   @action
   void turn() {
