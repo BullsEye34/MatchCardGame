@@ -16,6 +16,7 @@ abstract class _Game with Store {
     'c2',
     'cA',
   ];
+  @observable
   var reveal = true;
 
   @action

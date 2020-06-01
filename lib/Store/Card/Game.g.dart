@@ -24,6 +24,21 @@ mixin _$Game on _Game, Store {
     });
   }
 
+  final _$revealAtom = Atom(name: '_Game.reveal');
+
+  @override
+  bool get reveal {
+    _$revealAtom.reportRead();
+    return super.reveal;
+  }
+
+  @override
+  set reveal(bool value) {
+    _$revealAtom.reportWrite(value, super.reveal, () {
+      super.reveal = value;
+    });
+  }
+
   final _$_GameActionController = ActionController(name: '_Game');
 
   @override
@@ -40,7 +55,8 @@ mixin _$Game on _Game, Store {
   @override
   String toString() {
     return '''
-card: ${card}
+card: ${card},
+reveal: ${reveal}
     ''';
   }
 }
