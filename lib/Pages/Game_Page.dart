@@ -39,7 +39,7 @@ class _GamePageState extends State<GamePage> {
     'c2',
     'cA',
   ];
-  bool reveal = false;
+  bool reveal = true;
 
   void turn() {
     reveal = !reveal;
@@ -81,11 +81,17 @@ class _GamePageState extends State<GamePage> {
                     children: [
                       Text(
                         "Round 1",
-                        style: TextStyle(color: Colors.white, fontSize: 30),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontFamily: 'Comfortaa'),
                       ),
                       Text(
                         "0:00",
-                        style: TextStyle(color: Colors.white, fontSize: 30),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontFamily: 'Comfortaa'),
                       ),
                     ],
                   ),
