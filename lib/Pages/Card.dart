@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-class Card extends StatefulWidget {
+class Cards extends StatefulWidget {
   var shape;
   var num;
-  Card(this.shape, this.num);
+  Cards(this.shape, this.num);
   @override
-  _CardState createState() => _CardState(shape, num);
+  _CardsState createState() => _CardsState(shape, num);
 }
 
-class _CardState extends State<Card> {
+class _CardsState extends State<Cards> {
   var shape;
   var num;
-  _CardState(this.shape, this.num);
+  _CardsState(this.shape, this.num);
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 96,
-      width: 62,
-      color: Colors.white,
+      width: 2,
+      color: Colors.black,
     );
   }
 }
