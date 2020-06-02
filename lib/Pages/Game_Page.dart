@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:fluttericon/rpg_awesome_icons.dart';
 
 class GamePage extends StatefulWidget {
   @override
