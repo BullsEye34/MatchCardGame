@@ -20,14 +20,14 @@ class _GamePageState extends State<GamePage> {
   ];
 
   var newCards = [
-    {"card": "s1", "reveal": "FALSE"},
-    {"card": "sA", "reveal": "FALSE"},
-    {"card": "c1", "reveal": "FALSE"},
-    {"card": "cA", "reveal": "FALSE"},
-    {"card": "d1", "reveal": "FALSE"},
-    {"card": "dA", "reveal": "FALSE"},
-    {"card": "h1", "reveal": "FALSE"},
-    {"card": "hA", "reveal": "FALSE"}
+    {"card": "s1", "reveal": false},
+    {"card": "sA", "reveal": false},
+    {"card": "c1", "reveal": false},
+    {"card": "cA", "reveal": false},
+    {"card": "d1", "reveal": false},
+    {"card": "dA", "reveal": false},
+    {"card": "h1", "reveal": false},
+    {"card": "hA", "reveal": false}
   ];
   var card1 = [
     's2',
