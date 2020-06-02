@@ -17,19 +17,42 @@ class _GamePageState extends State<GamePage> {
     {"card": "d1", "reveal": false},
     {"card": "dA", "reveal": false},
     {"card": "h1", "reveal": false},
-    {"card": "hA", "reveal": false}
+    {"card": "hA", "reveal": false},
+    {"card": "s1", "reveal": false},
+    {"card": "sA", "reveal": false},
+    {"card": "c1", "reveal": false},
+    {"card": "cA", "reveal": false},
+    {"card": "d1", "reveal": false},
+    {"card": "dA", "reveal": false},
+    {"card": "h1", "reveal": false},
+    {"card": "hA", "reveal": false},
   ];
   bool reveal = true;
+  var buffer;
+  var buffern;
+  var yaay = false;
 
   turn(index) {
     setState(() {
       newCards[index]["reveal"] = !newCards[index]["reveal"];
+      (buffer == newCards[index]["card"])
+          ? {
+              yaay = true,
+              newCards.removeAt(index),
+              newCards.removeAt(buffern),
+              buffer = "",
+              buffern = 0
+            }
+          : {
+              buffern = index,
+              buffer = newCards[index]["card"],
+            };
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(newCards[2]["card"].toString()[0]);
+    print(yaay);
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
@@ -79,24 +102,23 @@ class _GamePageState extends State<GamePage> {
                 ),
                 Spacer(),
                 GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: newCards.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4),
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                          onTap: () => turn(index),
-                          child: (newCards[index]["reveal"])
-                              ? new Cards(
-                                  newCards[index]["card"].toString()[0],
-                                  newCards[index]["card"]
-                                      .toString()
-                                      .substring(1))
-                              : Container(
-                                  child: Image.asset('assets/card.png'),
-                                ));
-                    }),
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: newCards.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4),
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () => turn(index),
+                      child: (!newCards[index]["reveal"])
+                          ? new Cards(newCards[index]["card"].toString()[0],
+                              newCards[index]["card"].toString().substring(1))
+                          : Container(
+                              child: Image.asset('assets/card.png'),
+                            ),
+                    );
+                  },
+                ),
                 /* GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -124,7 +146,7 @@ class _GamePageState extends State<GamePage> {
                                 ));
                     }), */
                 Spacer(),
-                right(),
+                (yaay) ? right() : wrong(),
                 SizedBox(
                   height: 20,
                 )
