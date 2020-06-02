@@ -1,3 +1,4 @@
+import 'package:card/Pages/Card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -29,6 +30,7 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(newCards[2]["card"].toString()[0]);
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
@@ -86,15 +88,19 @@ class _GamePageState extends State<GamePage> {
                       return InkWell(
                           onTap: () => turn(index),
                           child: (newCards[index]["reveal"])
-                              ? Card(
-                                  child: new GridTile(
+                              ? new /* GridTile(
                                     child: Observer(
-                                      builder: (_) => Center(
-                                          child: new Text(
-                                              "${newCards[index]["card"]}")),
+                              builder: (_) => Center(
+                                child: new Text(
+                                    "${newCards[index]["card"]}"),
+                              ),
                                     ), //just for testing, will fill with image later
-                                  ),
-                                )
+                                  ), */
+                                  Cards(
+                                      newCards[index]["card"].toString()[0],
+                                      newCards[index]["card"]
+                                          .toString()
+                                          .substring(1))
                               : /* Card(
                                 child: new GridTile(
                                   child: Observer(
