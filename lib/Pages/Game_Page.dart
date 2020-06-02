@@ -79,6 +79,7 @@ class _GamePageState extends State<GamePage> {
                 ),
                 Spacer(),
                 GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: newCards.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -112,6 +113,7 @@ class _GamePageState extends State<GamePage> {
                                 ));
                     }),
                 GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: newCards.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
