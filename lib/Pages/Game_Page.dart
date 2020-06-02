@@ -8,17 +8,6 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  var card = [
-    's2',
-    'sA',
-    'h2',
-    'hA',
-    'd2',
-    'dA',
-    'c2',
-    'cA',
-  ];
-
   var newCards = [
     {"card": "s1", "reveal": false},
     {"card": "sA", "reveal": false},
@@ -29,20 +18,12 @@ class _GamePageState extends State<GamePage> {
     {"card": "h1", "reveal": false},
     {"card": "hA", "reveal": false}
   ];
-  var card1 = [
-    's2',
-    'sA',
-    'h2',
-    'hA',
-    'd2',
-    'dA',
-    'c2',
-    'cA',
-  ];
   bool reveal = true;
 
-  void turn() {
-    reveal = !reveal;
+  turn(index) {
+    setState(() {
+      newCards[index]["reveal"] = !newCards[index]["reveal"];
+    });
   }
 
   @override
@@ -56,8 +37,6 @@ class _GamePageState extends State<GamePage> {
         systemNavigationBarColor: Color(0xff7A0200),
       ),
     );
-    var shuffleCard = card1;
-    shuffleCard.shuffle();
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -99,18 +78,19 @@ class _GamePageState extends State<GamePage> {
                 Spacer(),
                 GridView.builder(
                     shrinkWrap: true,
-                    itemCount: card.length,
+                    itemCount: newCards.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4),
                     itemBuilder: (context, index) {
                       return InkWell(
-                          onTap: turn,
-                          child: (!reveal)
+                          onTap: () => turn(index),
+                          child: (newCards[index]["reveal"])
                               ? Card(
                                   child: new GridTile(
                                     child: Observer(
                                       builder: (_) => Center(
-                                          child: new Text("${card[index]}")),
+                                          child: new Text(
+                                              "${newCards[index]["card"]}")),
                                     ), //just for testing, will fill with image later
                                   ),
                                 )
@@ -127,24 +107,27 @@ class _GamePageState extends State<GamePage> {
                     }),
                 GridView.builder(
                     shrinkWrap: true,
-                    itemCount: card.length,
+                    itemCount: newCards.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4),
                     itemBuilder: (context, index) {
                       return InkWell(
-                          onTap: turn,
-                          child: (!reveal)
+                          onTap: () => turn(index),
+                          child: (newCards[index]["reveal"])
                               ? Card(
                                   child: new GridTile(
                                     child: Observer(
                                       builder: (_) => Center(
                                           child: new Text(
-                                              "${shuffleCard[index]}")),
+                                              "${newCards[index]["card"]}")),
                                     ), //just for testing, will fill with image later
                                   ),
                                 )
-                              : Container(
-                                  child: Image.asset('assets/card.png'),
+                              : InkWell(
+                                  onTap: () => turn(index),
+                                  child: Container(
+                                    child: Image.asset('assets/card.png'),
+                                  ),
                                 ));
                     }),
                 Spacer(),
