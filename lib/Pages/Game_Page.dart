@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class GamePage extends StatefulWidget {
@@ -35,6 +36,15 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarBrightness: Brightness.light,
+        statusBarColor: Color(0xff7A0200),
+        statusBarIconBrightness: Brightness.light,
+        systemNavigationBarColor: Color(0xff7A0200),
+      ),
+    );
     var shuffleCard = card1;
     shuffleCard.shuffle();
     return Scaffold(
@@ -42,8 +52,7 @@ class _GamePageState extends State<GamePage> {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/back.png'),
-            ),
+                image: AssetImage('assets/back.png'), fit: BoxFit.cover),
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
