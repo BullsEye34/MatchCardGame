@@ -166,7 +166,8 @@ class _GamePageState extends State<GamePage> {
         ),
         Text(
           "Wrong",
-          style: TextStyle(color: Colors.white, fontSize: 30),
+          style: TextStyle(
+              color: Colors.white, fontSize: 30, fontFamily: 'Comfortaa'),
         )
       ],
     );
@@ -195,7 +196,8 @@ class _GamePageState extends State<GamePage> {
         ),
         Text(
           "Match",
-          style: TextStyle(color: Colors.white, fontSize: 30),
+          style: TextStyle(
+              color: Colors.white, fontSize: 30, fontFamily: 'Comfortaa'),
         )
       ],
     );
