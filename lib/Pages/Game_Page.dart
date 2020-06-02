@@ -88,31 +88,16 @@ class _GamePageState extends State<GamePage> {
                       return InkWell(
                           onTap: () => turn(index),
                           child: (newCards[index]["reveal"])
-                              ? new /* GridTile(
-                                    child: Observer(
-                              builder: (_) => Center(
-                                child: new Text(
-                                    "${newCards[index]["card"]}"),
-                              ),
-                                    ), //just for testing, will fill with image later
-                                  ), */
-                                  Cards(
-                                      newCards[index]["card"].toString()[0],
-                                      newCards[index]["card"]
-                                          .toString()
-                                          .substring(1))
-                              : /* Card(
-                                child: new GridTile(
-                                  child: Observer(
-                                    builder: (_) => Center(child: new Text("")),
-                                  ), //just for testing, will fill with image later
-                                ),
-                              ), */
-                              Container(
+                              ? new Cards(
+                                  newCards[index]["card"].toString()[0],
+                                  newCards[index]["card"]
+                                      .toString()
+                                      .substring(1))
+                              : Container(
                                   child: Image.asset('assets/card.png'),
                                 ));
                     }),
-                GridView.builder(
+                /* GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: newCards.length,
@@ -137,7 +122,7 @@ class _GamePageState extends State<GamePage> {
                                     child: Image.asset('assets/card.png'),
                                   ),
                                 ));
-                    }),
+                    }), */
                 Spacer(),
                 right(),
                 SizedBox(
