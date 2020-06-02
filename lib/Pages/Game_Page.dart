@@ -42,7 +42,7 @@ class _GamePageState extends State<GamePage> {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/card.png'),
+              image: AssetImage('assets/back.png'),
             ),
           ),
           child: Padding(
