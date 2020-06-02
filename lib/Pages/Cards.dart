@@ -26,6 +26,67 @@ class _CardsState extends State<Cards> {
                 ),
               ),
             ),
+            Center(
+              child: (shape == "s")
+                  ? Icon(
+                      RpgAwesome.spades,
+                      size: 40,
+                    )
+                  : (shape == "c")
+                      ? Icon(
+                          RpgAwesome.clovers,
+                          size: 40,
+                        )
+                      : (shape == "d")
+                          ? Icon(
+                              RpgAwesome.diamonds,
+                              size: 40,
+                              color: Colors.red,
+                            )
+                          : Icon(
+                              RpgAwesome.hearts,
+                              size: 40,
+                              color: Colors.red,
+                            ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        num,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20,
+                            color: (shape == "s" || shape == "c")
+                                ? Colors.black
+                                : Colors.red),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Spacer(),
+                      Text(
+                        num,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20,
+                            color: (shape == "s" || shape == "c")
+                                ? Colors.black
+                                : Colors.red),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ));
   }
