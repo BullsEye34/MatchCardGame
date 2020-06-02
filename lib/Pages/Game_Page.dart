@@ -18,6 +18,17 @@ class _GamePageState extends State<GamePage> {
     'c2',
     'cA',
   ];
+
+  var newCards = [
+    {"card": "s1", "reveal": "FALSE"},
+    {"card": "sA", "reveal": "FALSE"},
+    {"card": "c1", "reveal": "FALSE"},
+    {"card": "cA", "reveal": "FALSE"},
+    {"card": "d1", "reveal": "FALSE"},
+    {"card": "dA", "reveal": "FALSE"},
+    {"card": "h1", "reveal": "FALSE"},
+    {"card": "hA", "reveal": "FALSE"}
+  ];
   var card1 = [
     's2',
     'sA',
@@ -28,7 +39,7 @@ class _GamePageState extends State<GamePage> {
     'c2',
     'cA',
   ];
-  bool reveal = true;
+  bool reveal = false;
 
   void turn() {
     reveal = !reveal;
@@ -60,18 +71,24 @@ class _GamePageState extends State<GamePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "Round 1",
-                      style: TextStyle(color: Colors.white, fontSize: 40),
-                    ),
-                    Text(
-                      "0:00",
-                      style: TextStyle(color: Colors.white, fontSize: 40),
-                    ),
-                  ],
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Round 1",
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      ),
+                      Text(
+                        "0:00",
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      ),
+                    ],
+                  ),
                 ),
                 Spacer(),
                 GridView.builder(
@@ -81,24 +98,26 @@ class _GamePageState extends State<GamePage> {
                         crossAxisCount: 4),
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: turn,
-                        child: (reveal)
-                            ? Card(
-                                child: new GridTile(
-                                  child: Observer(
-                                    builder: (_) => Center(
-                                        child: new Text("${card[index]}")),
-                                  ), //just for testing, will fill with image later
-                                ),
-                              )
-                            : Card(
+                          onTap: turn,
+                          child: (!reveal)
+                              ? Card(
+                                  child: new GridTile(
+                                    child: Observer(
+                                      builder: (_) => Center(
+                                          child: new Text("${card[index]}")),
+                                    ), //just for testing, will fill with image later
+                                  ),
+                                )
+                              : /* Card(
                                 child: new GridTile(
                                   child: Observer(
                                     builder: (_) => Center(child: new Text("")),
                                   ), //just for testing, will fill with image later
                                 ),
-                              ),
-                      );
+                              ), */
+                              Container(
+                                  child: Image.asset('assets/card.png'),
+                                ));
                     }),
                 GridView.builder(
                     shrinkWrap: true,
@@ -107,16 +126,20 @@ class _GamePageState extends State<GamePage> {
                         crossAxisCount: 4),
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: turn,
-                        child: Card(
-                          child: new GridTile(
-                            child: Observer(
-                              builder: (_) => Center(
-                                  child: new Text("${shuffleCard[index]}")),
-                            ), //just for testing, will fill with image later
-                          ),
-                        ),
-                      );
+                          onTap: turn,
+                          child: (!reveal)
+                              ? Card(
+                                  child: new GridTile(
+                                    child: Observer(
+                                      builder: (_) => Center(
+                                          child: new Text(
+                                              "${shuffleCard[index]}")),
+                                    ), //just for testing, will fill with image later
+                                  ),
+                                )
+                              : Container(
+                                  child: Image.asset('assets/card.png'),
+                                ));
                     }),
                 Spacer(),
                 right(),
