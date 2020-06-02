@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/rpg_awesome_icons.dart';
 
 class Cards extends StatefulWidget {
   var shape;
@@ -14,10 +15,18 @@ class _CardsState extends State<Cards> {
   _CardsState(this.shape, this.num);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 96,
-      width: 2,
-      color: Colors.black,
-    );
+    return ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/cardFront.png'),
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
