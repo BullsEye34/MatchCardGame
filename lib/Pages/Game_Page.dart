@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:card/Store/Card/Game.dart';
 
 class GamePage extends StatefulWidget {
   @override
@@ -8,89 +7,116 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  final Game game = new Game();
-  final Game game2 = new Game();
+  var card = [
+    's2',
+    'sA',
+    'h2',
+    'hA',
+    'd2',
+    'dA',
+    'c2',
+    'cA',
+  ];
+  var card1 = [
+    's2',
+    'sA',
+    'h2',
+    'hA',
+    'd2',
+    'dA',
+    'c2',
+    'cA',
+  ];
+  bool reveal = true;
+
+  void turn() {
+    reveal = !reveal;
+  }
 
   @override
   Widget build(BuildContext context) {
-    var shuffleCard = game2.card;
+    var shuffleCard = card1;
     shuffleCard.shuffle();
     return Scaffold(
-      backgroundColor: Colors.red,
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/card.png'),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "Round 1",
-                  style: TextStyle(color: Colors.white, fontSize: 40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      "Round 1",
+                      style: TextStyle(color: Colors.white, fontSize: 40),
+                    ),
+                    Text(
+                      "0:00",
+                      style: TextStyle(color: Colors.white, fontSize: 40),
+                    ),
+                  ],
                 ),
-                Text(
-                  "0:00",
-                  style: TextStyle(color: Colors.white, fontSize: 40),
-                ),
+                Spacer(),
+                GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: card.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4),
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: turn,
+                        child: (reveal)
+                            ? Card(
+                                child: new GridTile(
+                                  child: Observer(
+                                    builder: (_) => Center(
+                                        child: new Text("${card[index]}")),
+                                  ), //just for testing, will fill with image later
+                                ),
+                              )
+                            : Card(
+                                child: new GridTile(
+                                  child: Observer(
+                                    builder: (_) => Center(child: new Text("")),
+                                  ), //just for testing, will fill with image later
+                                ),
+                              ),
+                      );
+                    }),
+                GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: card.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4),
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: turn,
+                        child: Card(
+                          child: new GridTile(
+                            child: Observer(
+                              builder: (_) => Center(
+                                  child: new Text("${shuffleCard[index]}")),
+                            ), //just for testing, will fill with image later
+                          ),
+                        ),
+                      );
+                    }),
+                Spacer(),
+                right(),
+                SizedBox(
+                  height: 20,
+                )
               ],
             ),
-            Spacer(),
-            GridView.builder(
-                shrinkWrap: true,
-                itemCount: game.card.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: game.turn,
-                    child: (game.reveal)
-                        ? Card(
-                            child: new GridTile(
-                              child: Observer(
-                                builder: (_) => Center(
-                                    child: new Text("${game.card[index]}")),
-                              ), //just for testing, will fill with image later
-                            ),
-                          )
-                        : Card(
-                            child: new GridTile(
-                              child: Observer(
-                                builder: (_) => Center(child: new Text("")),
-                              ), //just for testing, will fill with image later
-                            ),
-                          ),
-                  );
-                }),
-            GridView.builder(
-                shrinkWrap: true,
-                itemCount: game.card.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: game.turn,
-                    child: Card(
-                      child: new GridTile(
-                        child: Observer(
-                          builder: (_) =>
-                              Center(child: new Text("${shuffleCard[index]}")),
-                        ), //just for testing, will fill with image later
-                      ),
-                    ),
-                  );
-                }),
-            Spacer(),
-            right(),
-            SizedBox(
-              height: 20,
-            )
-          ],
+          ),
         ),
       ),
     );
