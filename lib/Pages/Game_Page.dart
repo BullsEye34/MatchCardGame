@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:card/Pages/BlankCard.dart';
 import 'package:card/Pages/Cards.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +32,7 @@ class _GamePageState extends State<GamePage> {
   bool reveal = true;
   var buffer = "";
   var buffern = -999;
-  var yaay = false;
-
+  var yaay = "false";
   turn(index) {
     setState(() {
       newCards[index]["reveal"] = !newCards[index]["reveal"];
@@ -40,6 +41,10 @@ class _GamePageState extends State<GamePage> {
         newCards[buffern]["matched"] = true;
         buffern = -999;
         buffer = "";
+        yaay = "true";
+        Timer(Duration(milliseconds: 50), () {
+          yaay = "IDK";
+        });
       } else
         buffer = "";
       if (newCards[index]["reveal"]) if (buffer == "")
@@ -150,7 +155,14 @@ class _GamePageState extends State<GamePage> {
                                 ));
                     }), */
                 Spacer(),
-                (yaay) ? right() : wrong(),
+                (yaay == "true")
+                    ? right()
+                    : (yaay == "IDK")
+                        ? Container(
+                            height: 142,
+                            width: 100,
+                          )
+                        : wrong(),
                 SizedBox(
                   height: 20,
                 )
