@@ -45,11 +45,16 @@ class _GamePageState extends State<GamePage> {
         Timer(Duration(milliseconds: 50), () {
           yaay = "IDK";
         });
-      } else
+      } else {
         buffer = "";
-      if (newCards[index]["reveal"]) if (buffer == "")
+        buffern = -999;
+        //newCards[index]["reveal"] = !newCards[index]["reveal"];
+      }
+      if (newCards[index]["reveal"]) if (buffer == "") {
         buffer = newCards[index]["card"];
-      buffern = index;
+        buffern = index;
+      }
+
       if (!newCards[index]["reveal"]) buffer = "";
       print(buffer);
     });
