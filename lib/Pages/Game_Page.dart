@@ -1,7 +1,6 @@
 import 'package:card/Pages/Cards.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 class GamePage extends StatefulWidget {
   @override
