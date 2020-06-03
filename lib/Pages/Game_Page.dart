@@ -28,31 +28,31 @@ class _GamePageState extends State<GamePage> {
     {"card": "hA", "reveal": false, "matched": false},
   ];
   bool reveal = true;
-  var buffer;
-  var buffern;
+  var buffer = "";
+  var buffern = -999;
   var yaay = false;
 
   turn(index) {
     setState(() {
       newCards[index]["reveal"] = !newCards[index]["reveal"];
-      (buffer == newCards[index]["card"])
-          ? {
-              yaay = true,
-              newCards.removeAt(index),
-              newCards.removeAt(buffern),
-              buffer = "",
-              buffern = 0
-            }
-          : {
-              buffern = index,
-              buffer = newCards[index]["card"],
-            };
+      if (buffer == newCards[index]["card"] && buffern != index) {
+        newCards[index]["matched"] = true;
+        newCards[buffern]["matched"] = true;
+        buffern = -999;
+        buffer = "";
+      } else
+        buffer = "";
+      if (newCards[index]["reveal"]) if (buffer == "")
+        buffer = newCards[index]["card"];
+      buffern = index;
+      if (!newCards[index]["reveal"]) buffer = "";
+      print(buffer);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(yaay);
+    print(buffer);
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
@@ -110,12 +110,17 @@ class _GamePageState extends State<GamePage> {
                   itemBuilder: (context, index) {
                     return InkWell(
                         onTap: () => turn(index),
-                        child: (!newCards[index]["reveal"])
-                            ? new Cards(newCards[index]["card"].toString()[0],
-                                newCards[index]["card"].toString().substring(1))
-                            : Container(
-                                child: Image.asset('assets/card.png'),
-                              ));
+                        child: (newCards[index]["matched"])
+                            ? BlankCard()
+                            : (newCards[index]["reveal"])
+                                ? new Cards(
+                                    newCards[index]["card"].toString()[0],
+                                    newCards[index]["card"]
+                                        .toString()
+                                        .substring(1))
+                                : Container(
+                                    child: Image.asset('assets/card.png'),
+                                  ));
                   },
                 ),
                 /* GridView.builder(
