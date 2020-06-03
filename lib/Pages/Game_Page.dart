@@ -1,3 +1,4 @@
+import 'package:card/Pages/BlankCard.dart';
 import 'package:card/Pages/Cards.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -108,14 +109,13 @@ class _GamePageState extends State<GamePage> {
                       crossAxisCount: 4),
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () => turn(index),
-                      child: (!newCards[index]["reveal"])
-                          ? new Cards(newCards[index]["card"].toString()[0],
-                              newCards[index]["card"].toString().substring(1))
-                          : Container(
-                              child: Image.asset('assets/card.png'),
-                            ),
-                    );
+                        onTap: () => turn(index),
+                        child: (!newCards[index]["reveal"])
+                            ? new Cards(newCards[index]["card"].toString()[0],
+                                newCards[index]["card"].toString().substring(1))
+                            : Container(
+                                child: Image.asset('assets/card.png'),
+                              ));
                   },
                 ),
                 /* GridView.builder(
