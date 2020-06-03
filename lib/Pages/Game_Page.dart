@@ -32,7 +32,7 @@ class _GamePageState extends State<GamePage> {
   bool reveal = true;
   var buffer = "";
   var buffern = -999;
-  var yaay = "false";
+  var yaay = "IDK";
   turn(index) {
     setState(() {
       newCards[index]["reveal"] = !newCards[index]["reveal"];
