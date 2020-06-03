@@ -10,22 +10,22 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   var newCards = [
-    {"card": "s1", "reveal": false},
-    {"card": "sA", "reveal": false},
-    {"card": "c1", "reveal": false},
-    {"card": "cA", "reveal": false},
-    {"card": "d1", "reveal": false},
-    {"card": "dA", "reveal": false},
-    {"card": "h1", "reveal": false},
-    {"card": "hA", "reveal": false},
-    {"card": "s1", "reveal": false},
-    {"card": "sA", "reveal": false},
-    {"card": "c1", "reveal": false},
-    {"card": "cA", "reveal": false},
-    {"card": "d1", "reveal": false},
-    {"card": "dA", "reveal": false},
-    {"card": "h1", "reveal": false},
-    {"card": "hA", "reveal": false},
+    {"card": "s1", "reveal": false, "matched": false},
+    {"card": "sA", "reveal": false, "matched": false},
+    {"card": "c1", "reveal": false, "matched": false},
+    {"card": "cA", "reveal": false, "matched": false},
+    {"card": "d1", "reveal": false, "matched": false},
+    {"card": "dA", "reveal": false, "matched": false},
+    {"card": "h1", "reveal": false, "matched": false},
+    {"card": "hA", "reveal": false, "matched": false},
+    {"card": "s1", "reveal": false, "matched": false},
+    {"card": "sA", "reveal": false, "matched": false},
+    {"card": "c1", "reveal": false, "matched": false},
+    {"card": "cA", "reveal": false, "matched": false},
+    {"card": "d1", "reveal": false, "matched": false},
+    {"card": "dA", "reveal": false, "matched": false},
+    {"card": "h1", "reveal": false, "matched": false},
+    {"card": "hA", "reveal": false, "matched": false},
   ];
   bool reveal = true;
   var buffer;
