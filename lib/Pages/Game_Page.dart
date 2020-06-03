@@ -54,7 +54,6 @@ class _GamePageState extends State<GamePage> {
         buffer = newCards[index]["card"];
         buffern = index;
       }
-
       if (!newCards[index]["reveal"]) buffer = "";
       print(buffer);
     });
