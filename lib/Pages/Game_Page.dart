@@ -74,6 +74,10 @@ class _GamePageState extends State<GamePage>
     print(buffer);
   }
 
+  AnimationController flipControllet;
+  Animation flipAnimation;
+  AnimationStatus flipStatus = AnimationStatus.dismissed;
+
   @override
   Widget build(BuildContext context) {
     print(buffer);
