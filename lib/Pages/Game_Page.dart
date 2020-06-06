@@ -35,6 +35,11 @@ class _GamePageState extends State<GamePage>
   var buffern = -999;
   var yaay = "IDK";
   turn(index) {
+    if (flipStatus == AnimationStatus.dismissed) {
+      flipController.forward();
+    } else {
+      flipController.reverse();
+    }
     setState(() {
       newCards[index]["reveal"] = !newCards[index]["reveal"];
     });
