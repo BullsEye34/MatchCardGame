@@ -74,9 +74,19 @@ class _GamePageState extends State<GamePage>
     print(buffer);
   }
 
-  AnimationController flipControllet;
+  AnimationController flipController;
   Animation flipAnimation;
   AnimationStatus flipStatus = AnimationStatus.dismissed;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    flipController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
