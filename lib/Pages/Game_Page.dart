@@ -10,7 +10,8 @@ class GamePage extends StatefulWidget {
   _GamePageState createState() => _GamePageState();
 }
 
-class _GamePageState extends State<GamePage> {
+class _GamePageState extends State<GamePage>
+    with SingleTickerProviderStateMixin {
   var newCards = [
     {"card": "s1", "reveal": false, "matched": false},
     {"card": "sA", "reveal": false, "matched": false},
@@ -38,9 +39,8 @@ class _GamePageState extends State<GamePage> {
       newCards[index]["reveal"] = !newCards[index]["reveal"];
     });
     print(newCards[index]["reveal"]);
-    if(newCards[index]["reveal"] ==true)
-
-    if (buffer == newCards[index]["card"] && buffern != index) {
+    if (newCards[index]["reveal"] ==
+        true) if (buffer == newCards[index]["card"] && buffern != index) {
       setState(() {
         newCards[index]["matched"] = true;
         newCards[buffern]["matched"] = true;
@@ -51,8 +51,9 @@ class _GamePageState extends State<GamePage> {
           yaay = "IDK";
         });
       });
-
-    } else if(buffer != newCards[index]["card"] && buffern !=-999  && buffern != index){
+    } else if (buffer != newCards[index]["card"] &&
+        buffern != -999 &&
+        buffern != index) {
       Timer(Duration(milliseconds: 1000), () {
         setState(() {
           newCards[index]["reveal"] = !newCards[index]["reveal"];
@@ -61,8 +62,6 @@ class _GamePageState extends State<GamePage> {
           buffern = -999;
         });
       });
-
-
     }
 
     if (newCards[index]["reveal"]) if (buffer == "") {
@@ -70,7 +69,6 @@ class _GamePageState extends State<GamePage> {
         buffer = newCards[index]["card"];
         buffern = index;
       });
-
     }
     if (!newCards[index]["reveal"]) buffer = "";
     print(buffer);
