@@ -75,7 +75,7 @@ class _GamePageState extends State<GamePage>
   }
 
   AnimationController flipController;
-  Animation flipAnimation;
+  Animation<double> flipAnimation;
   AnimationStatus flipStatus = AnimationStatus.dismissed;
 
   @override
@@ -86,6 +86,13 @@ class _GamePageState extends State<GamePage>
       vsync: this,
       duration: Duration(milliseconds: 200),
     );
+    flipAnimation = Tween<double>(end: 1, begin: 0).animate(flipController)
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        flipStatus = status;
+      });
   }
 
   @override
