@@ -36,7 +36,12 @@ class _GamePageState extends State<GamePage> {
   turn(index) {
     setState(() {
       newCards[index]["reveal"] = !newCards[index]["reveal"];
-      if (buffer == newCards[index]["card"] && buffern != index) {
+    });
+    print(newCards[index]["reveal"]);
+    if(newCards[index]["reveal"] ==true)
+
+    if (buffer == newCards[index]["card"] && buffern != index) {
+      setState(() {
         newCards[index]["matched"] = true;
         newCards[buffern]["matched"] = true;
         buffern = -999;
@@ -45,18 +50,30 @@ class _GamePageState extends State<GamePage> {
         Timer(Duration(milliseconds: 50), () {
           yaay = "IDK";
         });
-      } else {
-        buffer = "";
-        buffern = -999;
-        //newCards[index]["reveal"] = !newCards[index]["reveal"];
-      }
-      if (newCards[index]["reveal"]) if (buffer == "") {
+      });
+
+    } else if(buffer != newCards[index]["card"] && buffern !=-999  && buffern != index){
+      Timer(Duration(milliseconds: 1000), () {
+        setState(() {
+          newCards[index]["reveal"] = !newCards[index]["reveal"];
+          newCards[buffern]["reveal"] = !newCards[buffern]["reveal"];
+          buffer = "";
+          buffern = -999;
+        });
+      });
+
+
+    }
+
+    if (newCards[index]["reveal"]) if (buffer == "") {
+      setState(() {
         buffer = newCards[index]["card"];
         buffern = index;
-      }
-      if (!newCards[index]["reveal"]) buffer = "";
-      print(buffer);
-    });
+      });
+
+    }
+    if (!newCards[index]["reveal"]) buffer = "";
+    print(buffer);
   }
 
   @override
@@ -163,7 +180,7 @@ class _GamePageState extends State<GamePage> {
                     ? right()
                     : (yaay == "IDK")
                         ? Container(
-                            height: 142,
+                            height: 100,
                             width: 100,
                           )
                         : wrong(),
