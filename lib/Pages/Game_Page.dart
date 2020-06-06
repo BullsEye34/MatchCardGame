@@ -158,19 +158,25 @@ class _GamePageState extends State<GamePage>
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4),
                   itemBuilder: (context, index) {
-                    return InkWell(
-                        onTap: () => turn(index),
-                        child: (newCards[index]["matched"])
-                            ? BlankCard()
-                            : (newCards[index]["reveal"])
-                                ? new Cards(
-                                    newCards[index]["card"].toString()[0],
-                                    newCards[index]["card"]
-                                        .toString()
-                                        .substring(1))
-                                : Container(
-                                    child: Image.asset('assets/card.png'),
-                                  ));
+                    return Transform(
+                      alignment: FractionalOffset.center,
+                      transform: Matrix4.identity()
+                        ..setEntry(3, 2, 0.002)
+                        ..rotateY(3.14159265 * flipAnimation.value),
+                      child: InkWell(
+                          onTap: () => turn(index),
+                          child: (newCards[index]["matched"])
+                              ? BlankCard()
+                              : (newCards[index]["reveal"])
+                                  ? new Cards(
+                                      newCards[index]["card"].toString()[0],
+                                      newCards[index]["card"]
+                                          .toString()
+                                          .substring(1))
+                                  : Container(
+                                      child: Image.asset('assets/card.png'),
+                                    )),
+                    );
                   },
                 ),
                 /* GridView.builder(
