@@ -10,8 +10,7 @@ class GamePage extends StatefulWidget {
   _GamePageState createState() => _GamePageState();
 }
 
-class _GamePageState extends State<GamePage>
-    with SingleTickerProviderStateMixin {
+class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
   var newCards = [
     {"card": "s1", "reveal": false, "matched": false},
     {"card": "sA", "reveal": false, "matched": false},
